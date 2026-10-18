@@ -1,3 +1,3 @@
 import streamlit as st
 
-st.print("Welcome to the Calculator App!")
+st.write("Welcome to the Calculator App!")
