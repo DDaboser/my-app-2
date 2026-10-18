@@ -1,3 +1,3 @@
-import streamlit as banana
+import streamlit as st
 
-banana.title("My App")
+st.print("Welcome to the Calculator App!")
