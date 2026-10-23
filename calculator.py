@@ -1,30 +1,27 @@
 import streamlit as st
 
-st.title("Interactive Calculator App")
+st.title("Grade Calculator")
 
-# Get numbers and operation from the user via the webpage
-num_1 = st.number_input("Enter the first number:", value=0.0)
-num_2 = st.number_input("Enter the second number:", value=0.0)
+# Create a text box for the user to enter their grade
+grade_input = st.text_input("Enter your grade:")
 
-# A dropdown is a great web alternative to typing the operation manually!
-operation = st.selectbox("Enter the operation:", ("+", "-", "*", "/"))
+# Check if the user has typed something before running the logic
+if grade_input:
+    try:
+        # Convert the input string into a number
+        grade = int(grade_input)
 
-# Add a button so the math only happens when the user clicks it
-if st.button("Calculate"):
-    if operation == '+':
-        result = num_1 + num_2
-    elif operation == '-':
-        result = num_1 - num_2
-    elif operation == '*':
-        result = num_1 * num_2
-    elif operation == '/':
-        # We can use our new '!=' operator here to prevent dividing by zero!
-        if num_2 != 0:
-            result = num_1 / num_2
+        # Your original conditional logic
+        if grade > 90:
+            st.success("You got an A PLUS!")
+        elif grade > 80:
+            st.info("You got a B.")
+        elif grade > 70:
+            st.warning("You got a C.")
+        elif grade > 60:
+            st.warning("You got a D.")
         else:
-            result = "Error: Cannot divide by zero!"
-    else:
-        result = "Invalid operation"
-        
-    # Display the result on the screen for your users to see
-    st.success(f"The result is: {result}")
+            st.error("You got an F.")
+            
+    except ValueError:
+        st.error("Please enter a valid number.")
